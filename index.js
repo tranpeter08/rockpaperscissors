@@ -26,16 +26,14 @@ function renderBoard(text){
 
 function handleScore(user, comp){
     let score = user[comp];
-    return (score === 1)? `Win`:
-        (score === 0)? `Tie` : `Lose`;
+    return (score === 1)? `YOU WIN`:
+        (score === 0)? `TIE` : `YOU LOSE`;
 }
 
 function handleCompIMG(comp){
     const {src, alt} = appState[comp].img
     $('.js-comp-img').html(`<img src="${src}" alt="${alt}">`);
 }
-
-
 
 function battleButton(hand){
     const comp = ['rock','paper','scissors'];
@@ -51,6 +49,14 @@ function battleButton(hand){
 function handImg(imgSRC){
     const{src, alt} = imgSRC;
     $('.js-hand-img').html(`<img src="${src}" alt="${alt}">`)
+}
+
+function clearResults(){
+    $('.js-clear').empty();
+}
+
+function renderVS(){
+    $('.js-h3').html(`<h3>VS</h3>`)
 }
 
 function handSelect(){
@@ -70,6 +76,10 @@ function handSelect(){
         handImg(scissors.img);
         battleButton(scissors);
     });
+    $('.js-weap').on('click', ()=>{
+        renderVS()
+        clearResults();
+    })
 }
 
 function runThis(){
